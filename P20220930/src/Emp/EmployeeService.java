@@ -1,0 +1,14 @@
+package Emp;
+
+// CRUD 처리
+
+public interface EmployeeService {
+	
+	// 초기화(init)
+	public void init();
+	// 추가
+	public void input();
+	public String search(int employeeId); // 사원아이디에 이름 반환.
+	public void print(); // 전체사원정보 출력
+	public int searchSal(int employeeId); // 사원아이디에 해당하는 급여 반환
+}
