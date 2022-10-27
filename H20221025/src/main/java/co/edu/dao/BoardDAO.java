@@ -258,7 +258,6 @@ public class BoardDAO extends DAO {
 		return null;
 	  }
 	
-	public MemberVO 
 	
 }
 
