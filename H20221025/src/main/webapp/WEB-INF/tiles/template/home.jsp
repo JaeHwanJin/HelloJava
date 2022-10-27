@@ -15,5 +15,3 @@
 		   	ID which will toggle the menu when clicked.
 	    </p>
 		</div>
-	</div>
-</div>
