@@ -7,7 +7,7 @@
 		<put-attribute name="title" value="Tiles tutorial homepage" />
 		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/tiles/template/menu.jsp" />
-		<put-attribute name="body" value="/WEB-INF/tiles/template/hom.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/template/home.jsp" />
 		
 	</definition>
 	

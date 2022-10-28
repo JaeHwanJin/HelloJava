@@ -19,7 +19,11 @@ public interface BoardService {
 	// 회원목록
 	public List<MemberVO> memberList();
 	
+	// 회원가입
 	public MemberVO insertMember(MemberVO vo);
+	
+	// 로그인
+	public MemberVO loginMember(String id, String pw);
 
 	
 }

@@ -175,9 +175,6 @@ public class BoardDAO extends DAO {
 		getConnect();
 		List<BoardVO> list = new ArrayList<>();
 		
-		String sql =  "select b.* from (select rownum rn, a.* from (select * from tbl_board order by board_no asc) a where rownum <=?)b where b.rn >= ?";
-		int from = (page - 1) * 10 + 1; // 1 ,11
-		int to = (page * 10); // 10, 20
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -259,6 +256,33 @@ public class BoardDAO extends DAO {
 	  }
 	
 	
+	public MemberVO login(String id, String passwd) {
+		getConnect();
+		String sql = "select * from members where id=? and passwd=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, passwd);
+
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				MemberVO vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setPasswd(rs.getString("passwd"));
+				vo.setResponsibility(rs.getString("responsibility"));
+
+				return vo;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return null;
+	}
 }
 
 

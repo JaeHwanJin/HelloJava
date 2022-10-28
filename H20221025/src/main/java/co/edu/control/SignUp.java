@@ -22,7 +22,7 @@ public class SignUp implements Control {
 		String passwd = req.getParameter("passwd");
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
-		
+
 		
 		BoardService service = new BoardServiceImpl();
 		service.insertMember(new MemberVO(id, passwd, name, email, "user"));

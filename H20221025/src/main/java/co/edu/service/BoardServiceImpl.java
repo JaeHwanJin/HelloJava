@@ -52,4 +52,10 @@ public class BoardServiceImpl implements BoardService{
 	public MemberVO insertMember(MemberVO vo) {
 		return dao.signUpBoard(vo);
 	}
+
+
+	@Override
+	public MemberVO loginMember(String id, String pw) {
+		return dao.login(id, pw);
+	}
 }
