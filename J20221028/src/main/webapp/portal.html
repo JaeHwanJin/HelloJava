@@ -29,12 +29,13 @@
 		
 		function showList(result){
 			result.data.forEach(center => console.log(center.centerName));
+			document.getElementById('list').append(makeTr(center));
 		}
 		
 		function makeTr(center){
 			let tr = document.createElement('tr');
 			let fields = ['id', 'centerName', 'phoneNumber'];
-			for(let field of fields){
+			for(let field in fields){
 				let td = document.createElement('td');
 				let txt = document.createTextNode(center[field]);
 				td.append(txt);
