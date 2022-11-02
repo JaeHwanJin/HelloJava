@@ -177,10 +177,10 @@ public class BoardDAO extends DAO {
 		
 		
 		try {
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, to);
-			psmt.setInt(2, from);
-			rs = psmt.executeQuery();
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setInt(1, to);
+//			psmt.setInt(2, from);
+//			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
 				BoardVO board = new BoardVO();

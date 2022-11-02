@@ -2,12 +2,44 @@ package co.edu.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import co.edu.common.DAO;
 import co.edu.member.MemberVO;
+import co.edu.member.calendarVO;
 
 public class MemberDAO extends DAO{
+	
+	public List<calendarVO> calendarList(){
+		getConnect();
+		
+	}
+	
+	//부서명, 부서인원
+	public Map<String, Integer> getEmpByDept(){
+		getConnect();
+		 Map<String, Integer> map = new HashMap<>();
+		String sql = "select d.department_name, count(1)\r\n"
+				+ "from hr.employees e\r\n"
+				+ "join hr.departments d\r\n"
+				+ "on e.department_id = d.department_id\r\n"
+				+ "group by d.department_name";
+		try {
+			psmt=conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getString(1), rs.getInt(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return map;
+	}
+	
 	// 데이터 한건 삭제
 	public boolean deleteMember(String id) {
 		getConnect();

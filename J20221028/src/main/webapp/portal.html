@@ -28,14 +28,16 @@
 			.catch(error => console.log(error));
 		
 		function showList(result){
-			result.data.forEach(center => console.log(center.centerName));
+			console.log(result)
+			result.data.forEach(center =>{
 			document.getElementById('list').append(makeTr(center));
+			});
 		}
 		
 		function makeTr(center){
 			let tr = document.createElement('tr');
 			let fields = ['id', 'centerName', 'phoneNumber'];
-			for(let field in fields){
+			for(let field of fields){
 				let td = document.createElement('td');
 				let txt = document.createTextNode(center[field]);
 				td.append(txt);
@@ -45,8 +47,6 @@
 			return tr;
 		}
 		
-
-
 </script>
 </body>
 </html>
