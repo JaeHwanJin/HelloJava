@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+	
+		div{
+			display: inline-block;
+			width: 600px;
+			background-color: green;		
+		}
+		
+		p{
+			display: inline-block;
+			width: 100px;
+			background-color: yellow;
+			padding: 5px;
+			margin: 4px;
+		}
+	</style>
+</head>
+<body>
+	단어입력: <input type="text" id="word"><button id="btn">입력</button><br> 
+	<div id="wordlist">
+	</div>
+	<div id ='timer'></div>
+	<script>
+		let words =
+			`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet ipsum beatae at eius saepe quos non eligendi perspiciatis maiores repellendus reiciendis necessitatibus voluptate cum sunt magni ad id reprehenderit nobis.`
+		let wordAry = words.split(' ');
+		wordAry.forEach(word =>{
+			let pTag = document.createElement('p');
+			pTag.textContent = word;
+			document.getElementById('wordlist').append(pTag)
+		});
+		
+		//document.getElementById('word').addEventListener('change', removeWord);
+		//function removeWord(){
+			//let inputWord = document.getElementById('word').value;
+			//document.querySelectorAll('#wordlist>p').forEach(p =>{
+				//if(p.textContent ==word){
+					//p.remove();
+				//}
+			//})
+			//document.getElementById('word').value = null;
+		//}
+		
+		document.querySelector('#btn').addEventListener('click', removeWord);
+		
+		function removeWord(){
+			let inputWord = document.getElementById('word').value;
+			let getWord = document.querySelectorAll('#wordlist>p'); 
+			for(let i = 0; i < getWord.length; i++){
+				if(getWord[i].textContent == inputWord){
+					getWord[i].remove();
+				}
+			}	
+		}
+		
+	
+		Date.prototype.timeFormater = function(){
+			return("0" + this.getHours()).slice(-2) + ":" + //
+				("0" + this.getMinutes()).slice(-2) + ":" + //
+				("0" + this.getSeconds()).slice(-2);
+		}
+		
+		let time = 60;
+		
+		let timer1 = setInterval(()=> {
+			// 100초 =>
+			time--;
+			document.getElementById('timer').textContent = time;
+			let items = document.querySelectorAll('#wordlist>p');
+			
+			if(!items.length && time){
+				alert('success')
+				clearInterval(timer1); // serInterval을 종료하는 clearInterval(변수)
+			} else if (!time){
+				alert('fail');
+				clearInterval(timer1);
+			}
+		}, 1000);
+		document.getElementById('word').focus();
+	</script>
+</body>
+</html>

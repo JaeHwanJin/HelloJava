@@ -12,10 +12,10 @@ import co.edu.member.calendarVO;
 
 public class MemberDAO extends DAO{
 	
-	public List<calendarVO> calendarList(){
-		getConnect();
-		
-	}
+//	public List<calendarVO> calendarList(){
+//		getConnect();
+//		
+//	}
 	
 	//부서명, 부서인원
 	public Map<String, Integer> getEmpByDept(){

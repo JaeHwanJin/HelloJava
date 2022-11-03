@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>cal.html</title>
+	<script>
+	// https://jerryjerryjerry.tistory.com/26
+		let obj = {
+			id : 'hong',
+			age : 20
+		}
+		
+		obj = {} // new Object();
+		let ary = [] // new Array();
+		let today = new Date();
+		// getFullYear, getMonth
+		
+		document.addEventListener('DOMContentLoaded', function(){
+
+			today = new Date(2022, 10, 1);
+			let thisDay = today.getDay();
+			let	thisMonth = today.getMonth();
+			let lastDate = 31;
+			
+			let table = document.createElement('table');
+			table.setAttribute('border', '1');
+
+			let tbody = document.createElement('tbody');
+			let tr = document.createElement('tr');
+			tbody.append(tr);
+
+			// 요일지정
+			for(let i = 0; i < thisDay; i++){
+				let td = document.createElement('td');
+				tr.append(td);
+			}
+			for(let i = 1; i <= 31; i++){
+				let td = document.createElement('td');
+				td.textContent = i;
+				tr.append(td);
+				if ((i+thisDay) % 7 == 0 ){
+					tr = document.createElement('tr');
+					tbody.append(tr);
+				}
+			}
+			table.append(tbody)
+			document.getElementById('show').append(table);
+			
+		})
+	</script>
+</head>
+<body>
+	<div id ="show">
+	<script>
+		
+	</script>
+	</div>
+
+
+</body>
+</html>
