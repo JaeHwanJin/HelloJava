@@ -13,27 +13,7 @@ function domLoadedFunc(){
 
     let obj = {}
     let result = JSON.parse(data); 
-    console.log(result);
-
-	console.log(result[0].first_name);
-	for(let i = 0; i < result.length; i++){
-		console.log(`first_name : ${result[i].first_name}, last_Name : ${result[i]['last_name']}`);
-	}
-	
-	// 확장 form
-	for( let obj of result){
-			console.log(`id : ${obj.id}, email : ${obj['email']}`)
-	}
-	
-	console.clear(); // 명령어 위의 콘솔들을 지움
-	// 배열일 경우에는 Array.forEach() 배열result에 들어있는 갯수만큼 반복하는 메소드 (매개값으로 함수가 들어감)
-	result.forEach(function(value, index){
-		// if (value.salary > 5000)
-		if (index < 2)
-		console.log(value, index);
-	}) ;
-	
-	
+   
 	// 확장 for
 	// table
 	let table = document.createElement('table');

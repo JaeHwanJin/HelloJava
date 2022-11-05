@@ -1,131 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>도서목록 페이지</title>
-	<!-- <script src="javaScript/book.js"></script> -->
-	<style>
-
-		.list{
-			margin: 0;
-			padding: 0;
-		}
-		li{
-			list-style: none;
-		}
-		
-	</style>
-</head>	
+	<meta charset="UTF-8">	
+	<title>도서관리 시스템</title>
+		<script src="javaScript/book.js"></script>
+		<style>
+			input[type="text"], input[type="number"] {
+				width:150px;
+				border:1px solid #aaa;
+				}
+				
+			body{
+                width: 400px;
+            }
+            
+			.book{
+				background-color: rgb(225, 103, 103);
+			}
+			
+			button{
+				float : right;
+			}
+		</style>
+</head>
 <body>
-		<form name="submitFrm" action="" method="post">
-		<ul class="list">
-			<li>도서코드 : <input type="text" id="book_code"style="width:300px;"></li>
-			<li>도서명 : <input type="text" id="book_name"style="width:300px;"><br></li>
-			<li>저자 : <input type="text" id="author"style="width:300px;"><br></li>
-			<li>출판사 : <input type="text" id="press"style="width:300px;"><br></li>
-			<li>가격 : <input type="text" id="price"style="width:300px;"><br></li>
-			<input type="submit" value="저장">
-			<button type = "button">선택삭제</button>
-			
-		</ul>
+	<form action="" class="book">
+		도서코드 : <input type = "text" id = "book_code"><br>
+		도서명 : <input type = "text" id = "book_name"><br>
+		저자 : <input type = "text" id = "author"><br>
+		출판사 : <input type = "text" id = "press"><br>
+		가격 :  <input type = "number" id = "price"><br>
+		<button type = "button">저장</button>
+		<button type = "button">선택삭제</button>	
 	</form>
-	<div id="show"></div>
-		<table>
-			<thead>
-				<tr>
-				<th>도서코드</th>
-				<th>도서명</th>
-				<th>저자</th>
-				<th>출판사</th>
-				<th>가격</th>
-				</tr>				
-			</thead>
-			<tbody id = "list">
-			</tbody>
-		</table>
-	</div>
-	<script>
-	document.forms.submitFrm.onsubmit = add;
+	<div id="show">
 	
-	function add(){
-		let bc = document.getElementById('book_code').value;
-		let bn = document.getElementById('book_name').value;
-		let author = document.getElementById('author').value;
-		let press = document.getElementById('press').value;
-		let price = document.getElementById('price').value;
-		
-		let check = bc && bn && author && press && price && price;
-		
-		if(!check){
-			alert('빈 칸을 채워주세요.')
-			return false;
-		}
-		
-		let data = 'book_code=' + bc + '&book_name=' + bn + '&author=' + author + '&press=' + press + '&price=' + price + '&job=insert';
 
-		// ajax 호출
-		fetch('./BookAddServlet', {
-				method: 'post',
-				headers: {
-					'Content-type': 'application/x-www-form-urlencoded'
-				},
-				body: data
-			})
-			.then(result => result.json())
-			.then(addCallBack)
-			.catch(err => {
-				console.log(err);
-			});
-
-		return false; 
-	}
-
-	function addCallBack(result) {
-			
-			document.querySelector('#list').append(makeTr(result));
-
-			// 화면입력초기화
-			document.getElementById('book_code').value = '';
-			document.querySelector('#book_name').value = '';
-			document.querySelector('#author').value = '';
-			document.querySelector('#press').value = '';			
-			document.querySelector('#price').value = '';	
-		}
-
-	function makeTr(obj) {
-		let tr = document.createElement('tr');
-		for (let field in obj) {
-			let td = document.createElement('td');
-			let txt = document.createTextNode(obj[field]);
-			td.append(txt);
-			tr.append(td);
-		}
-
-		// 버튼(삭제)
-		td = document.createElement('td');
-		let btn = document.createElement('button');
-		btn.addEventListener('click', function(){
-			this.parentElement.parentElement.remove();
-		})	
-		btn.textContent = '삭제';
-		td.appendChild(btn);
-		tr.appendChild(td);
-
-		return tr;	
-		
-	}
-
-	fetch('./BookAddServlet') 
-		.then(result => result.json())
-		.then(showData)
-		.catch(function (err) {
-			console.log(err);
-		})
-
-	function showData(result) {
-		console.log(result)
-	}
-	
-	</script>
 </body>
 </html>
