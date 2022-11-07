@@ -87,7 +87,6 @@ function domLoadedFunc(){
 		td.appendChild(chk);
 		tr.appendChild(td);
 
-		
 		tr.addEventListener('click', showDetailFunc);
 		
 		for(let field of fields){

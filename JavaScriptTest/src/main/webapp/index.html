@@ -5,36 +5,71 @@
 	<title>도서관리 시스템</title>
 		<script src="javaScript/book.js"></script>
 		<style>
-			input[type="text"], input[type="number"] {
-				width:150px;
-				border:1px solid #aaa;
-				}
-				
+		
+			label { 
+				display:inline-block; width:75px; 
+			}
+
 			body{
-                width: 400px;
-            }
-            
-			.book{
+				width:400px;
+				border: 1px solid black;
+			}
+			
+			.content{
+				float:left;
+				height:122px;
+				width:65%;
+				background-color: rgb(225, 103, 103);
+				
+			}
+
+			.sidebar{
+				float:right;
+				height:122px;
+				width:35%;
 				background-color: rgb(225, 103, 103);
 			}
 			
 			button{
-				float : right;
-			}
+				font-size: 10px;
+ 				margin-top: 25px;
+ 			}
+ 				
+           #show{
+           		clear:both;
+           }
+           
+           thead{
+        	   	background-color:  rgb(247, 88, 88);
+           }
+           
+           tbody{
+           		background-color: rgb(228, 176, 176);
+           		margin:0px;
+           }
+           
 		</style>
+		
 </head>
 <body>
-	<form action="" class="book">
-		도서코드 : <input type = "text" id = "book_code"><br>
-		도서명 : <input type = "text" id = "book_name"><br>
-		저자 : <input type = "text" id = "author"><br>
-		출판사 : <input type = "text" id = "press"><br>
-		가격 :  <input type = "number" id = "price"><br>
-		<button type = "button">저장</button>
-		<button type = "button">선택삭제</button>	
-	</form>
-	<div id="show">
-	
 
+	<div class="content">
+		<label for="book_code">도서코드 : </label>
+		<input type = "text" id = "book_code"><br>
+		<label for="book_name">도서명 : </label>
+		<input type = "text" id = "book_name"><br>
+		<label for="author">저자 : </label>
+		<input type = "text" id = "author"><br>
+		<label for="press">출판사 : </label>
+		<input type = "text" id = "press"><br>
+		<label for="price">가격 : </label>
+		<input type = "number" id = "price"><br>
+	</div>		
+	<div class="sidebar">
+		<button type = "button">저장</button><br>
+		<button type = "button">선택삭제</button>
+	</div>		
+
+	<div id="show"></div>
 </body>
 </html>
