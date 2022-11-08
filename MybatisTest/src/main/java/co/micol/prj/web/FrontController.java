@@ -16,6 +16,7 @@ import co.micol.prj.common.Command;
 import co.micol.prj.main.MainCommand;
 import co.micol.prj.member.command.AjaxIdCheck;
 import co.micol.prj.member.command.Logout;
+import co.micol.prj.member.command.MemberJoin;
 import co.micol.prj.member.command.MemberJoinForm;
 import co.micol.prj.member.command.MemberLogin;
 import co.micol.prj.member.command.MemberLoginForm;
@@ -41,7 +42,10 @@ public class FrontController extends HttpServlet {
 		map.put("/Logout.do", new Logout()); // 로그아웃
 		map.put("/memberJoinForm.do", new MemberJoinForm()); // 회원가입 폼 호출
 		map.put("/ajaxIdCheck.do", new AjaxIdCheck());
+		map.put("/memberJoinForm.do", new MemberJoin());
+
 	}
+	
 	
 	//요청을 분석하고 실행, 결과를 돌려주는 곳
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

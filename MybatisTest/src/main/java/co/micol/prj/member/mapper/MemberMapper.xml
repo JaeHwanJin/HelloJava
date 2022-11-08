@@ -11,7 +11,8 @@
 	</select>
 	
 	<insert id="memberInsert">
-	
+		INSERT INTO MEMBERS
+		VALUES(#{id},#{passwd},#{name},#{email},'user' )
 	</insert>
 	
 	<delete id="memberDelete">
