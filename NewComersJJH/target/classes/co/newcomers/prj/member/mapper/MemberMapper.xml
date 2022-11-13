@@ -9,9 +9,18 @@
 		SELECT * FROM MEMBER WHERE ID = #{id}
 	</select>
 	
+	<select id="memberSelect2" resultType="co.newcomers.prj.member.vo.MemberVO">
+		SELECT * FROM MEMBER WHERE ID = #{id}
+	</select>
+	
 	<insert id="memberInsert">
-		INSERT INTO MEMBER (ID, PASSWORD, NAME, ADDRESS, EMAIL)
-		VALUES (#{id}, #{password}, #{name}, #{address},  #{email})
+		INSERT INTO MEMBER (ID, PASSWORD, NICKNAME, EMAIL, NAME, ADDRESS )
+		VALUES (#{id}, #{password}, #{nickname},  #{email}, #{name}, #{address} )
+	</insert>
+	
+	<insert id="memberApplySeller">
+		INSERT INTO SELLERAPPLICATION
+		VALUES (${id }, sysdate, ${email },${address });
 	</insert>
 	
 	<delete id="memberDelete">
@@ -21,6 +30,7 @@
 	<update id="memberUpdate">
 		UPDATE MEMBER
 		SET PASSWORD = #{password},
+			NICKNAME = #{nickname},
 			EMAIL = #{email},
 			NAME = #{name},
 			GRADE = #{grade}
@@ -36,4 +46,10 @@
 		SELECT CASE WHEN COUNT(ID) = 1 THEN 0 ELSE 1 END AS ID
 		FROM MEMBER WHERE ID = #{id}
 	</select>
+	
+	<update id="isApplyCheck">
+		UPDATE MEMBER
+		SET GRADE = 'seller'
+		WHERE ID = #{id}
+	</update>
 </mapper>

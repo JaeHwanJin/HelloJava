@@ -1,14 +1,14 @@
 package co.newcomers.prj.item.service;
 
-import java.util.List;
-
+import co.newcomers.prj.item.vo.ItemDetailVO;
 import co.newcomers.prj.item.vo.ItemVO;
+import co.newcomers.prj.item.vo.ReviewVO;
 
 public interface ItemService {
-	List<ItemVO> itemSelectList();  
-	List<ItemVO> itemSelect();	
-	ItemVO itemSearch(ItemVO vo);
+	ItemDetailVO itemSelect(ItemDetailVO vo);	
 	int itemInsert(ItemVO vo);		
-	int itemDelete(ItemVO vo);		
-	int itemUpdate(ItemVO vo);		
+	
+	ReviewVO reviewSelect(ReviewVO vo);
+	int reviewInsert(ReviewVO vo);		
+
 }

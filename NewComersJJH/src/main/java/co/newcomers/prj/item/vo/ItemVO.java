@@ -10,6 +10,7 @@ public class ItemVO {
 	private String itemName;
 	private int itemPrice;
 	private String itemId;
+	private String itemCategory;
 
 	
 }

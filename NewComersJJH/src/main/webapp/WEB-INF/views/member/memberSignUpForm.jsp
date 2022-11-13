@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>   
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -59,16 +59,59 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner register_form_inner">
 						<h3>Create an account</h3>
+				<!--  ==============카카오톡정보로 회원가입 ================= -->
+						<c:if test="${not empty id }">
 						<form class="row login_form" action="memberSingUp.do" onsubmit="return formSubmit()" id="register_form" method="post">
 						<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="id" name="id" placeholder="ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID'">
-								<button type="button" id="btn" value="No" onclick="idCheck()">중복체크</button>
+								<input type="text" class="form-control" id="id" name="id" value="${id }" placeholder="${id }" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID'" readonly>
+								<button type="button" id="btn" value="No" onclick="idCheck()">Check</button>
 						</div>
 						 <div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
               			</div>
              			<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="nickname" name="nickname" value="${nickname }" placeholder="${nickname }" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nickname'" >
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="name" name="name" value="${name }" placeholder="${name }" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" readonly>
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="address" name="address" placeholder="address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="email" name="email" value="${email }" placeholder="${email } " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" readonly>
+           			   </div>
+           	  
+							<div class="col-md-12 form-group">
+								<div class="creat_account">
+									<input type="checkbox" id="f-option2" name="selector">
+									<label for="f-option2">Keep me logged in</label>
+								</div>
+							</div>
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="button button-register w-100">Register</button>
+							</div>
+						</form>
+						</c:if>
+						
+				<!--  ==============일반 회원가입 ================= -->
+						<c:if test="${empty id }">
+						<form class="row login_form" action="memberSingUp.do" onsubmit="return formSubmit()" id="register_form" method="post">
+						<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="id" name="id" placeholder="ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID'">
+								<button type="button" id="btn" value="No" onclick="idCheck()">Check</button>
+						</div>
+						 <div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+              			</div>
+             			<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="nickname" name="nickname" placeholder="Nickname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nickname'">
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
@@ -90,6 +133,7 @@
 								<button type="submit" value="submit" class="button button-register w-100">Register</button>
 							</div>
 						</form>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -106,15 +150,15 @@
  <script type="text/javascript">
   //Id, Passwd 입력 값 확인
   	function formSubmit(){
-  		if(register_form.btn.value == 'No'){
+  		if(document.getElementById('btn').value == 'No'){
   			alert("아이디 중복 체크를 해주세요.");
   			return false;
   		}
-  		if(register_form.password.value != register_form.confirmPassword.value){
+  		if(document.getElementById('password').value != document.getElementById('confirmPassword').value){
   			alert("비밀번호가 일치하지 않습니다.")
-  			register_form.password.value ="";
-  			register_form.confirmPassword.value ="";
-  			register_form.password.focus();
+  			document.getElementById('password').value ="";
+  			document.getElementById('confirmPassword').value ="";
+  			document.getElementById('password').focus();
   			return false;
   		}
   		return true;

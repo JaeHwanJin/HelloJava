@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import co.newcomers.prj.common.Command;
+import co.newcomers.prj.member.vo.MemberVO;
+import co.newcomers.prj.mypage.service.MypageService;
+import co.newcomers.prj.mypage.service.impl.MypageServiceImpl;
 
 public class MyinfoUpdate implements Command {
 
@@ -12,25 +15,37 @@ public class MyinfoUpdate implements Command {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		
-		String id = (String) request.getAttribute("id");
+		String id = (String) session.getAttribute("id");
 		System.out.println(id);
-		String password = (String) request.getAttribute("password");
-		System.out.println(password);
-		String changepassword = (String) request.getAttribute("changepassword");
-		System.out.println(changepassword);
-		String changepassword2 = (String) request.getAttribute("changepassword2");
-		System.out.println(changepassword2);
-		String name = (String) request.getAttribute("name");
-		System.out.println(name);
-		String address = (String) request.getAttribute("address");
-		System.out.println(name);
-		String message = id +"님의 정보가 변경되었습니다";
+		String pass = (String) session.getAttribute("password");
+		System.out.println("현재 로그인된 아이디 비밀번호 : "+ pass);
+		String email = (String) session.getAttribute("email");
+		
+//확인용		
+		String password = (String) request.getParameter("password");
+		System.out.println("password " + password );		
+		String changepassword = (String) request.getParameter("changepassword");
+		System.out.println("changepassword " + changepassword);
+		String changepassword2 = (String) request.getParameter("changepassword2");
+		System.out.println("changepassword2 " + changepassword2);
+		String name = (String) request.getParameter("name");
+		System.out.println("name " + name);
+		String address = (String) request.getParameter("address");
+		System.out.println("address " + address);
+
 		if(session.getAttribute("password").equals(password)&&changepassword.equals(changepassword2)) {
-			session.setAttribute("message", message);
-			return "main/main.tiles";
+			MypageService dao = new MypageServiceImpl();
+			MemberVO vo = new MemberVO();
 			
+			vo.setId(id);
+			vo.setEmail(email);
+			vo.setPassword(changepassword);
+			vo.setName(name);
+			vo.setAddress(address);
+			dao.myselfUpdate(vo);
+			return "main/main.tiles";			
 		}
-		return null;
+		return "mypage/mypageUpdate.tiles";
 	}
 
 }

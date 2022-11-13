@@ -30,11 +30,13 @@
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="itemDetailForm.do">Product Details</a></li>
+                  <li class="nav-item"><a class="nav-link" href="itemDetail.do">Product Details</a></li>
                   <li class="nav-item"><a class="nav-link" href="checkout.html">Product Checkout</a></li>
                   <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
                   <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                  <li class="nav-item"><a class="nav-link" href="itemRsForm.do">Item Registration</a></li>                  
+                  <c:if test="${grade eq 'seller'}">
+                  <li class="nav-item"><a class="nav-link" href="itemRsForm.do">Item Registration</a></li>
+                  </c:if>                  
                 </ul>
 							</li>
               <li class="nav-item active submenu dropdown">

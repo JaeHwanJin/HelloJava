@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"> 
+<head> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -49,8 +49,8 @@
 									
 									<aside class="single_sidebar_widget author_widget">
 											<img class="author_img rounded-circle" src="img/blog/author.png" alt="">
-											<h4>이름</h4>
-											<p>코멘트</p>
+											<h4>${name }님</h4>
+											<p>${grade }</p>
 											<div class="social_icon">
 													<a href="#">
 													<i class="fab fa-facebook-f"></i>
@@ -79,21 +79,10 @@
 																	<p><h2>My 쇼핑</h2></p>
 															</a><br>
 
-															<a href="#" class="d-flex justify-content-between">
+															<a href="mydetailorderlist.do" class="d-flex justify-content-between">
 																<p>주문목록/배송조회</p>
 															</a><br>
 
-															<a href="#" class="d-flex justify-content-between">
-																<p>주문목록/배송조회</p>
-															</a><br>
-
-															<a href="#" class="d-flex justify-content-between">
-																<p>주문목록/배송조회</p>
-															</a><br>
-
-															<a href="#" class="d-flex justify-content-between">
-																<p>주문목록/배송조회</p>
-															</a><br>
 													</li>
 													<li>
 														<a class="d-flex justify-content-between">
@@ -104,17 +93,7 @@
 														<p>개인정보 수정</p>
 													</a><br>
 
-													<a href="#" class="d-flex justify-content-between">
-														<p>주문목록/배송조회</p>
-													</a><br>
-
-													<a href="#" class="d-flex justify-content-between">
-														<p>주문목록/배송조회</p>
-													</a><br>
-
-													<a href="#" class="d-flex justify-content-between">
-														<p>주문목록/배송조회</p>
-													</a><br>
+												
 													</li>
 													
 											</ul>
@@ -127,7 +106,7 @@
 						<div class="col-lg-6">
 							<div class="login_form_inner">
 								<h3>고객님의 비밀번호를 입력해주세요</h3>
-								<form class="row login_form" action="mypageUpdate.do" id="contactForm" method="post" >
+								<form class="row login_form" action="mypageUpdate.do" id="contactForm" method="get" >
 									<div class="col-md-12 form-group">
 										<input type="text" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 									</div>

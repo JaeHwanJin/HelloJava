@@ -53,5 +53,17 @@ public class MemberServiceImpl implements MemberService {
 		//중복체크
 		return map.isMemberIdCheck(id);
 	}
+	
+	@Override
+	public MemberVO memberSelect2(String id) {
+		// 회원 개인 리스트 불러오기
+		return map.memberSelect2(id);
+	}
+
+	@Override
+	public int memberApplySeller(MemberVO vo) {
+		// 판매자격신청
+		return map.memberApplySeller(vo);
+	}
 
 }

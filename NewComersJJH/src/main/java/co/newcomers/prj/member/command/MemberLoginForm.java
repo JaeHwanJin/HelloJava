@@ -10,7 +10,7 @@ public class MemberLoginForm implements Command {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		// 로그인
-		return "member/memberLoginForm";
+		return "member/memberLoginForm.tiles";
 	}
 
 }

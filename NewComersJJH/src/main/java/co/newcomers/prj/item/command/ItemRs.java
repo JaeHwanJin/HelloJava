@@ -17,11 +17,9 @@ public class ItemRs implements Command{
 		ItemVO vo = new ItemVO();
 				
 		vo.setItemName(request.getParameter("itemName"));
+		vo.setItemCategory(request.getParameter("itemCategory"));
 		vo.setItemPrice(Integer.parseInt(request.getParameter("itemPrice")));
 		vo.setItemId(request.getParameter("itemId"));
-
-								
-		System.out.println(vo);
 		
 		int n = dao.itemInsert(vo);
 		if(n > 0) {
@@ -29,6 +27,6 @@ public class ItemRs implements Command{
 		}else {
 			System.out.println("상품등록 실패");
 		}
-		return "Item/itemRsForm";
+		return "item/itemRsForm.tiles";
 	}
 }

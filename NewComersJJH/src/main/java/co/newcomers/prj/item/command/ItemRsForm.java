@@ -10,7 +10,7 @@ public class ItemRsForm implements Command{
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		// 상품등록 화면
-		return "Item/itemRsForm.tiles";
+		return "item/itemRsForm.tiles";
 	}
 
 }

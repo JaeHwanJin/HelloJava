@@ -3,33 +3,28 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.newcomers.prj.item.mapper.ItemMapper">
 
-	<select id="itemSelectList">
-		SELECT * FROM ITEM ORDER BY ITEM_CODE DESC 
+	<select id="itemSelect" resultType="co.newcomers.prj.item.vo.ItemDetailVO">
+		SELECT ITEM.ITEM_PRICE, DETAIL_ITEM.ITEM_CODE, DETAIL_ITEM.ITEM_TITLE, DETAIL_ITEM.ITEM_CONTENT, DETAIL_ITEM.ITEM_IMAGE1 AS ITEM_IMAGE 
+		FROM DETAIL_ITEM, ITEM
+		WHERE DETAIL_ITEM.ITEM_CODE = ITEM.ITEM_CODE
+		AND DETAIL_ITEM.ITEM_CODE = 1
 	</select>
-	<select id="itemSelect">
-		SELECT * FROM DETAIL_ITEM WHERE ITEM = #{itemCode} 
-	</select>
-	
-	<select id="itemSearch" resultType="co.newcomers.prj.item.vo.ItemVO">
-		SELECT* FROM ITEM I, DETAIL_ITEM D
-		WHERE I.ITEM_CODE = D.ITEM_CODE
-		AND I.ITEM_NAME LIKE '%'#{itemName}'%'
-		AND D.ITEM_TITLE LIKE '%'#{itemTitle}'%'
-	</select>
-	
+
 	<insert id="itemInsert" parameterType="co.newcomers.prj.item.vo.ItemVO">
 		INSERT INTO ITEM
-		VALUES(item_seq.nextval, #{itemName}, #{itemPrice}, #{itemId})
+		VALUES(item_seq.nextval, #{itemCategory}, #{itemName}, #{itemPrice}, #{itemId})
 	</insert>
 	
-	<delete id="itemDelete" parameterType="co.newcomers.prj.item.vo.ItemVO">
-		DELETE FROM ITEM WHERE ITEM_CODE = #{itemCode}
-	</delete>
-	
-	<update id="itemUpdate" parameterType="co.newcomers.prj.item.vo.ItemVO">
-		UPDATE ITEM
-		SET ITEM_NAME = #{itemName}, 
-			ITEM_PRICE = #{itemPrice}
-		WHERE ITEM_CODE = #{itemCode} 
- 	</update>
-</mapper>
+	<select id="reviewSelect" resultType="co.newcomers.prj.item.vo.ReviewVO">
+		SELECT  REVIEW.REVIEW_WRITER, REVIEW.REVIEW_CONTENT, REVIEW.REVIEW_DATE, REVIEW.REVIEW_CODE, REVIEW.REVIEW_STAR
+		FROM REVIEW, ITEM
+		WHERE REVIEW.REVIEW_CODE = ITEM.ITEM_CODE
+		AND	REVIEW.REVIEW_CODE = 1
+	</select>
+
+	<insert id="reviewInsert" parameterType="co.newcomers.prj.item.vo.ReviewVO">
+		INSERT INTO REVIEW
+		VALUES(review_seq.nextval, item_seq.nextval, #{reviewWriter}, #{reviewContent}, #{reviewStar}, sysdate)
+	</insert>
+
+</mapper>	

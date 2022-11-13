@@ -12,15 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.newcomers.prj.common.Command;
+import co.newcomers.prj.item.command.ItemDetail;
 import co.newcomers.prj.item.command.ItemDetailForm;
 import co.newcomers.prj.item.command.ItemRs;
 import co.newcomers.prj.item.command.ItemRsForm;
+import co.newcomers.prj.item.command.ReviewRs;
 import co.newcomers.prj.main.MainCommand;
+import co.newcomers.prj.member.command.AjaxIdCheck;
+import co.newcomers.prj.member.command.ApplySeller;
+import co.newcomers.prj.member.command.KakaoLogin;
+import co.newcomers.prj.member.command.Logout;
+import co.newcomers.prj.member.command.MemberDelete;
+import co.newcomers.prj.member.command.MemberList;
 import co.newcomers.prj.member.command.MemberLogin;
 import co.newcomers.prj.member.command.MemberLoginForm;
-import co.newcomers.prj.member.command.MemberSignUp;
+import co.newcomers.prj.member.command.MemberSignUpForm;
+import co.newcomers.prj.member.command.MemberSingUp;
+import co.newcomers.prj.member.command.MessageForm;
 import co.newcomers.prj.mypage.command.MyPageForm;
 import co.newcomers.prj.mypage.command.MyinfoUpdate;
+import co.newcomers.prj.mypage.command.MyorderlistForm;
 import co.newcomers.prj.mypage.command.MypageUpdate;
 
 @WebServlet("*.do")
@@ -33,26 +44,36 @@ public class FrontController extends HttpServlet {
     }
 
 	public void init(ServletConfig config) throws ServletException {
-		map.put("/main.do", new MainCommand()); // 처음 보여줄 페이지 명령.
-		//Mypage 나
+		map.put("/main.do", new MainCommand()); //메인화면
+		map.put("/memberList.do", new MemberList()); //전체회원조회
+		map.put("/memberLoginForm.do", new MemberLoginForm()); //로그인폼 호출
+		map.put("/memberLogin.do", new MemberLogin()); //로그인 처리
+		map.put("/kakaoLogin.do", new KakaoLogin()); //카카오 로그인 처리
+		map.put("/logout.do", new Logout()); //로그아웃
+		map.put("/memberSignUpForm.do", new MemberSignUpForm()); //회원가입 화면
+		map.put("/memberSingUp.do", new MemberSingUp()); //회원가입 처리
+		map.put("/ajaxIdCheck.do", new AjaxIdCheck()); //아이디 중복 여부 체크
+		map.put("/messageForm.do", new MessageForm()); //메세지 폼 호출
+		map.put("/applySeller.do", new ApplySeller()); //판매자 권한 부여
+		map.put("/memberDelete.do", new MemberDelete()); //회원 탈퇴
+		
+		 
+		//동욱씨
 		map.put("/myPageForm.do", new MyPageForm());
 		map.put("/mypageUpdate.do", new MypageUpdate());
 		map.put("/myinfoUpdate.do", new MyinfoUpdate());
-		//login 미현씨
-		map.put("/memberLoginForm.do", new MemberLoginForm());
-		map.put("/memberSignUpForm.do", new MemberSignUp());
-		map.put("/memberLogin.do", new MemberLogin());
-		//헤더부분 메뉴이동 명령
-		
-		// 상품등록 진재환
+		map.put("/myorderlistform.do", new MyorderlistForm());
+//		map.put("/mydetailorderlist.do", new MydetailOrderList());
+		 
+		// 진재환
+		// 상품등록 
 		map.put("/itemRsForm.do", new ItemRsForm());
 		map.put("/ItemRs.do", new ItemRs());
-		
-		// 상품상세보기 진재환
+		// 상품상세보기,리뷰
 		map.put("/itemDetailForm.do", new ItemDetailForm());
-		
-		
-		//로그인..등등..알아서
+		map.put("/itemDetail.do", new ItemDetail());
+		map.put("/reviewRs.do", new ReviewRs());
+
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

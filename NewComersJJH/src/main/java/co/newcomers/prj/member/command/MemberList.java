@@ -21,7 +21,7 @@ public class MemberList implements Command {
 		members = dao.memberList();
 		request.setAttribute("members", members);
 		
-		return "member/membetList";
+		return "member/membetList.tiles";
 	}
 
 }
