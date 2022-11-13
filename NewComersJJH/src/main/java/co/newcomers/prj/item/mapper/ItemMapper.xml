@@ -26,5 +26,6 @@
 		INSERT INTO REVIEW
 		VALUES(review_seq.nextval, item_seq.nextval, #{reviewWriter}, #{reviewContent}, #{reviewStar}, sysdate)
 	</insert>
+	<!-- 왜안돼 -->
 
 </mapper>	
